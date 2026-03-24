@@ -11,7 +11,7 @@ const products = [
     name: "CLEAR MUSCLE",
     tagline: "MK-677 + ANAVAR + TURKESTERONE | 20mg | 30 Pills",
     price: 320000,
-    image: "/assets/generated/product-clear-muscle-themed.dim_800x900.jpg",
+    image: "/assets/img20260323094354-019d20c7-b5b6-73ca-a5c0-cca4d33c50c5.jpg",
     rating: 5,
     reviews: 87,
   },
