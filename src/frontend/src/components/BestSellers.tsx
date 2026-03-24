@@ -8,10 +8,10 @@ const STAR_KEYS = ["star-1", "star-2", "star-3", "star-4", "star-5"];
 const products = [
   {
     id: "mk677-anavar-turkesterone",
-    name: "MK-677 + ANAVAR + TURKESTERONE",
-    tagline: "20mg | 30 Pills",
+    name: "CLEAR MUSCLE",
+    tagline: "MK-677 + ANAVAR + TURKESTERONE | 20mg | 30 Pills",
     price: 320000,
-    image: "/assets/generated/mk677-anavar-turkesterone.dim_600x700.png",
+    image: "/assets/generated/product-clear-muscle-themed.dim_800x900.jpg",
     rating: 5,
     reviews: 87,
   },
@@ -40,6 +40,10 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.10_0_0/0.6)] to-transparent" />
+        {/* Best Seller badge */}
+        <span className="absolute top-3 left-3 bg-brand-orange text-[oklch(0.11_0_0)] font-display text-xs tracking-widest font-bold px-2 py-1 uppercase z-10">
+          BEST SELLER
+        </span>
       </div>
 
       {/* Card content */}
