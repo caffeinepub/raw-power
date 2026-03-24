@@ -6,9 +6,10 @@ export interface CartItem {
 }
 
 const LOCAL_PRODUCTS: Record<string, { name: string; price: number }> = {
-  "raw-whey": { name: "RAW WHEY", price: 4999 },
-  "pre-ignition": { name: "PRE-IGNITION", price: 4499 },
-  "recovery-fuel": { name: "RECOVERY FUEL", price: 3999 },
+  "mk677-anavar-turkesterone": { name: "CLEAR MUSCLE", price: 320000 },
+  "raw-whey": { name: "RAW WHEY", price: 499900 },
+  "pre-ignition": { name: "PRE-IGNITION", price: 449900 },
+  "recovery-fuel": { name: "RECOVERY FUEL", price: 399900 },
 };
 
 interface CartContextValue {

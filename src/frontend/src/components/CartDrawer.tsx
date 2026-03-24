@@ -7,20 +7,10 @@ const LOCAL_PRODUCTS: Record<
   string,
   { name: string; price: number; image: string }
 > = {
-  "raw-whey": {
-    name: "RAW WHEY",
-    price: 4999,
-    image: "/assets/generated/raw-whey.dim_600x700.png",
-  },
-  "pre-ignition": {
-    name: "PRE-IGNITION",
-    price: 4499,
-    image: "/assets/generated/pre-ignition.dim_600x700.png",
-  },
-  "recovery-fuel": {
-    name: "RECOVERY FUEL",
-    price: 3999,
-    image: "/assets/generated/recovery-fuel.dim_600x700.png",
+  "mk677-anavar-turkesterone": {
+    name: "CLEAR MUSCLE",
+    price: 320000,
+    image: "/assets/generated/product-clear-muscle-themed.dim_800x900.jpg",
   },
 };
 
@@ -114,7 +104,9 @@ export default function CartDrawer({
                 <ul className="flex flex-col gap-4">
                   {cartItems.map((item, i) => {
                     const product = LOCAL_PRODUCTS[item.productId];
-                    if (!product) return null;
+                    const name = product?.name ?? item.productId;
+                    const price = product?.price ?? 0;
+                    const image = product?.image ?? "";
                     return (
                       <li
                         key={item.productId}
@@ -122,31 +114,33 @@ export default function CartDrawer({
                         data-ocid={`cart.item.${i + 1}`}
                       >
                         <div className="w-16 h-16 bg-card-dark flex-shrink-0 overflow-hidden">
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-full object-cover"
-                          />
+                          {image && (
+                            <img
+                              src={image}
+                              alt={name}
+                              className="w-full h-full object-cover"
+                            />
+                          )}
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="font-display text-sm tracking-widest text-foreground truncate">
-                            {product.name}
+                            {name}
                           </p>
                           <p className="text-xs text-muted-foreground mt-1">
                             Qty: {item.quantity}
                           </p>
                           <p className="text-brand-orange font-display text-sm mt-1">
-                            $
-                            {((product.price * item.quantity) / 100).toFixed(2)}
+                            ₹
+                            {Math.round(
+                              (price * item.quantity) / 100,
+                            ).toLocaleString("en-IN")}
                           </p>
                         </div>
                         <button
                           type="button"
-                          onClick={() =>
-                            handleRemove(item.productId, product.name)
-                          }
+                          onClick={() => handleRemove(item.productId, name)}
                           className="text-muted-foreground hover:text-destructive transition-colors self-start p-1"
-                          aria-label={`Remove ${product.name}`}
+                          aria-label={`Remove ${name}`}
                           data-ocid={`cart.delete_button.${i + 1}`}
                         >
                           <Trash2 size={16} />
@@ -166,7 +160,7 @@ export default function CartDrawer({
                     TOTAL
                   </span>
                   <span className="font-display text-2xl text-brand-orange">
-                    ${(total / 100).toFixed(2)}
+                    ₹{Math.round(total / 100).toLocaleString("en-IN")}
                   </span>
                 </div>
                 <button

@@ -8,7 +8,10 @@ import ComparisonTable from "./components/ComparisonTable";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import PaymentFailure from "./components/PaymentFailure";
+import PaymentSuccess from "./components/PaymentSuccess";
 import PowerClub from "./components/PowerClub";
+import { CartProvider } from "./hooks/useCart";
 
 function AppContent() {
   const [cartOpen, setCartOpen] = useState(false);
@@ -86,6 +89,19 @@ function AppContent() {
   );
 }
 
+function RouteGate({ children }: { children: React.ReactNode }) {
+  const path = window.location.pathname;
+  if (path === "/payment-success") return <PaymentSuccess />;
+  if (path === "/payment-failure") return <PaymentFailure />;
+  return <>{children}</>;
+}
+
 export default function App() {
-  return <AppContent />;
+  return (
+    <CartProvider>
+      <RouteGate>
+        <AppContent />
+      </RouteGate>
+    </CartProvider>
+  );
 }
